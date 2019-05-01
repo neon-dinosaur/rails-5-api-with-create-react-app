@@ -1,7 +1,6 @@
-# README
+# Sheet Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sheet Tracker is built using Create-React-App and Rails 5 in API mode.  This application works differently than some other configurations of React and Rails.  After pulling down the code, you can stand up the Node server from `client` folder with `npm start`.  The Rails server can be stood up with the usual `rails s` or `rails server`.  I'll update with more information as my initial configuration continues.
 
 Things you may want to cover:
 
