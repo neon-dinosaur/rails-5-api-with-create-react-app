@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import React, { Component } from 'react'
+import './App.css'
+// $ is a shortcut for jQuery methods
+import $ from 'jquery'
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { bananasReceived: "" }
+    this.getBananas = this.getBananas.bind(this)
+  }
+  getBananas() {
+    $.ajax({
+      url: "/bananas",
+      type: "GET",
+      context: this, // Allows us to use this.setState inside success
+      success: function (result) {
+        this.setState({ bananasReceived: JSON.stringify(result) })
+      }
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <button
+          onClick={this.getBananas}
+          style={{ marginTop: '25vh' }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Get Bananas
+        </button>
+        <p>{this.state.bananasReceived}</p>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default App
